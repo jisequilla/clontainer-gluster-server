@@ -15,7 +15,7 @@ node {
 			GLUSTER_SERVER_8_S_LAYER_2="1.4.0"
 		}
 		stages{
-			stage ('Build') 
+			stage ('Build') {
 				echo "Starting building gluster"
 				step{
 					echo 'Building  ${GLUSTER_SERVER}'
