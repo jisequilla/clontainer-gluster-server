@@ -14,7 +14,7 @@ node {
 			GLUSTER_SERVER_8_S_LAYER_1="1.3.0"
 			GLUSTER_SERVER_8_S_LAYER_2="1.4.0"
 		}
-		stages{
+		
 			stage ('Build') {
 				steps{
 					echo 'Building  ${GLUSTER_SERVER}'
@@ -65,7 +65,7 @@ node {
 					sh "docker save -o ${GLUSTER_SERVER_JAVA_SERVICE}-${GLUSTER_SERVER_8_S_LAYER_2}.tar ${GLUSTER_SERVER_JAVA_SERVICE}:${GLUSTER_SERVER_8_S_LAYER_2}"
 				}
 			}	
-		}	
+			
     } catch (err) {
         currentBuild.result = 'FAILED'
         throw err
