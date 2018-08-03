@@ -16,54 +16,48 @@ node {
 		}
 		
 			stage ('Build') {
-				steps{
+				
 					echo 'Building  ${GLUSTER_SERVER}'
 					sh "cd ${GLUSTER_SERVER_PATH}"
 					sh "docker build -t ${GLUSTER_SERVER}:${GS_VERSION} ."
 					sh "cd ../../"
-				}
-				steps{
+				
+				
 					echo 'Building  ${GLUSTER_SERVER_8_PATH}'
 					sh "cd ${GLUSTER_SERVER_8_PATH}"
 					sh "docker build -t ${GLUSTER_SERVER_JAVA}:${GS_VERSION} ."
 					sh "cd ../../"
-				}
-				steps{
+				
 					echo 'Building  ${GLUSTER_SERVER_8_S_BASE}/${GLUSTER_SERVER_8_S_LAYER_1}'
 					sh "cd ${GLUSTER_SERVER_8_S_BASE}/${GLUSTER_SERVER_8_S_LAYER_1}"
 					sh "docker build -t ${GLUSTER_SERVER_JAVA_SERVICE}:${GLUSTER_SERVER_8_S_LAYER_1} ."
 					sh "cd ../../"
-				}
-				steps{
+				
 					echo 'Building  ${GLUSTER_SERVER_8_S_BASE}/${GLUSTER_SERVER_8_S_LAYER_2}'
 					sh "cd ${GLUSTER_SERVER_8_S_BASE}/${GLUSTER_SERVER_8_S_LAYER_2}"
 					sh "docker build -t ${GLUSTER_SERVER_JAVA_SERVICE}:${GLUSTER_SERVER_8_S_LAYER_2} ."
 					sh "cd ../../"
-				}
+				
 			
 			}
 			stage ('Deploy') {
-			    steps{
+			   
 					echo "Generating artifacts"
 					sh "mkdir target"
 					sh "cd target"
-				}
-				steps{
+				
 					echo 'Building  ${GLUSTER_SERVER}'
 					sh "docker save -o ${GLUSTER_SERVER}-${GS_VERSION}.tar ${GLUSTER_SERVER}:${GS_VERSION}"
-				}
-				steps{
+				
 					echo 'Building  ${GLUSTER_SERVER_JAVA}'
 					sh "docker save -o ${GLUSTER_SERVER_JAVA}-${GS_VERSION}.tar ${GLUSTER_SERVER_JAVA}:${GS_VERSION}"
-				}
-				steps{
+				
 					echo 'Building  ${GLUSTER_SERVER_8_S_BASE}/${GLUSTER_SERVER_8_S_LAYER_1}'
 					sh "docker save ${GLUSTER_SERVER_JAVA_SERVICE}-${GLUSTER_SERVER_8_S_LAYER_1}.tar -o ${GLUSTER_SERVER_JAVA_SERVICE}:${GLUSTER_SERVER_8_S_LAYER_1}"
-				}
-				steps{
+				
 					echo 'Building  ${GLUSTER_SERVER_8_S_BASE}/${GLUSTER_SERVER_8_S_LAYER_2}'
 					sh "docker save -o ${GLUSTER_SERVER_JAVA_SERVICE}-${GLUSTER_SERVER_8_S_LAYER_2}.tar ${GLUSTER_SERVER_JAVA_SERVICE}:${GLUSTER_SERVER_8_S_LAYER_2}"
-				}
+				
 			}	
 			
     } catch (err) {
