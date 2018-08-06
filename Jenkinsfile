@@ -1,6 +1,6 @@
 node {
  	// Clean workspace before doing anything
-    deleteDir()
+    //deleteDir()
 
     try {
 
