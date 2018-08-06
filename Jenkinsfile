@@ -15,14 +15,14 @@ node {
 		stage ('Build gluster-server') {
 			
 				echo 'Building  gluster-server'
-				sh "docker build -t gluster-server:1.2.0 gluster-server/1.2.0/Dockerfile"
+				sh "docker build -t gluster-server:1.2.0 -f gluster-server/1.2.0/Dockerfile"
 				sh "cd ../../"
 		}
 		
 		stage ('Build gluster-server-java8'){	
 			
 				echo 'Building  gluster-server-java8'
-				sh "cd gluster-server-java8"
+				sh "cd gluster-server-java8/1.2.0"
 				sh "docker build -t gluster-server-java8:1.2.0 ."
 				sh "cd ../../"
 		}
