@@ -7,6 +7,8 @@ node {
 		stage ('Build') {
 			
 				echo 'Building  gluster-server'
+				sh "ls -ltr"
+				sh "pwd"
 				sh "cd gluster-server"
 				sh "docker build -t gluster-server:1.2.0 ."
 				sh "cd ../../"
