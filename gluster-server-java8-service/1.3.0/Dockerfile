@@ -1,4 +1,4 @@
-FROM nova/gluster-server-java8:1.2.0
+FROM gluster-server-java8:1.2.0
 
 LABEL Description="Image for Nova Java Services. Contains the scripts required to start the gluster server and the service" Vendor="BBVA" Version="1.3.0"
 

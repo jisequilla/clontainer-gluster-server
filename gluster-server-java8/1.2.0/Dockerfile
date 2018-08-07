@@ -1,4 +1,4 @@
-FROM nova/gluster-server:1.2.0
+FROM gluster-server:1.2.0
 
 LABEL Description="Gluster image with Zulu8 JVM" Vendor="BBVA" Version="1.2.0"
 
